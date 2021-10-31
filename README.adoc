@@ -15,7 +15,7 @@ https://en.wikipedia.org/wiki/Richardson_Maturity_Model[RMM Level 3].
 The full-bore, dangerously anarchic spririt medium that first haunted
 https://en.wikipedia.org/wiki/Ted_Nelson[Ted Neslon] in the 1950s and invaded
 https://www.w3.org/History/1989/proposal.html[CERN in 1989]
-in full corporeal form the human being, Tim Berners-Lee.
+in corporeal form as the human being, Tim Berners-Lee.
 
 Don't be fooled: though this is implemented with the blunt weapons
 provided by Lerdorf and Eich, it is still a magical artifact.
