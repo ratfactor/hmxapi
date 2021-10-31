@@ -1,0 +1,37 @@
+= Hypermedia htmx API demo
+
+PHP demonstration "book database" with an HTML
+https://en.wikipedia.org/wiki/Hypermedia[hypermedia] API using
+https://htmx.org/[htmx] to render HTML content inline as needed.
+
+What makes HTML hypermedia APIs special is that they can be used
+directly by a human with a browser. In a sense, _all_ traditional
+websites are HTML hypermedia APIs.
+
+== Real REST
+
+This is real Fielding REST at 
+https://en.wikipedia.org/wiki/Richardson_Maturity_Model[RMM Level 3].
+The full-bore, dangerously anarchic spririt medium that first haunted
+https://en.wikipedia.org/wiki/Ted_Nelson[Ted Neslon] in the 1950s and invaded
+https://www.w3.org/History/1989/proposal.html[CERN in 1989]
+in full corporeal form the human being, Tim Berners-Lee.
+
+Don't be fooled: though this is implemented with the blunt weapons
+provided by Lerdorf and Eich, it is still a magical artifact.
+
+== TODO
+
+Finish.
+
+== PHP^PHP^
+
+As if PHP weren't enough, how about serving PHP with PHP?
+
+We've got `run.sh` to launch the portal to hyperland. Check it:
+
+----
+#!/bin/sh
+
+php -S localhost:8888 index.php
+----
