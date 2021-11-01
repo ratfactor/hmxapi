@@ -1,3 +1,3 @@
 #!/bin/sh
 
-php -S localhost:8888 index.php
+php -S localhost:8887 index.php

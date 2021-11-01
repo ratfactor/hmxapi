@@ -15,29 +15,26 @@ foreach ($_SERVER as $key => $value) {
     }
 }
 
-switch ($uri) {
-    case '':
-    case '/': route('welcome.php'); break;
-    case '/books': route('books.php'); break;
-    case '/authors': route('authors.php'); break;
-    default:
-        http_response_code(404);
-        echo "<h1>404 Not Found</h1>";
-        exit;
+// The "router" here is just a silly series of regex matches on the URI.
+$fname = "nothing";
+
+if     ($uri === '/') { $fname='welcome.php'; }
+elseif (preg_match('|/books/([0-9]+)|', $uri, $m)) { $req_book_id = $m[1]; $fname='book_id.php'; }
+elseif (preg_match('|/books|', $uri)) { $fname='books.php'; }
+elseif (preg_match('|/authors/([0-9]+)|', $uri, $m)) { $req_author_id = $m[1]; $fname='author_id.php'; }
+elseif (preg_match('|/authors|', $uri)) { $fname='authors.php'; }
+else {
+    http_response_code(404);
+    echo "<h1>404 Not Found</h1>";
+    exit;
 }
 
-function route($fname) {
-    global $hx_keys;
+// Render entire HTML document if not htmx request. Render head if body replaced.
+$whole_page = count($hx_keys) === 0;
+$render_head = $whole_page || isset($hx_keys['boosted']);
 
-    // Render entire HTML document if not htmx request.
-    $whole_page = count($hx_keys) === 0;
-
-    // Render the "head" portion of the page if body will be replaced.
-    $render_head = $whole_page || $hx_keys['boosted'];
-
-    // Render parts of document as needed and the requested route
-    if ($whole_page) require('html_head.php');
-    if ($render_head) require('page_head.php');
-    require_once($fname);
-    if ($whole_page) require('html_tail.php');
-}
+// Render parts of document as needed and the requested route
+if ($whole_page) require('html_head.php');
+if ($render_head) require('page_head.php');
+require_once($fname);
+if ($whole_page) require('html_tail.php');
