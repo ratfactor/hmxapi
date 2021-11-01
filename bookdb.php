@@ -66,7 +66,6 @@ $books = [
 
 // Then let's further "de-normalize" this for ease of use by adding
 // the book relationships to the authors.
-
 foreach ($books as $book_id => $book) {
     foreach ($book['authors'] as $author_id) {
         $author = &$authors[$author_id];
@@ -75,3 +74,9 @@ foreach ($books as $book_id => $book) {
         unset($author); // Unset the reference footgun.
     }
 }
+
+// Add 'id' from key for each entry:
+foreach ($books as $book_id => &$book) { $book['id'] = $book_id; }
+foreach ($authors as $author_id => &$author) { $author['id'] = $author_id; }
+unset($book); // Unset the reference footgun.
+unset($author); // Unset the reference footgun.

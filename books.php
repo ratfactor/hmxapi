@@ -9,9 +9,11 @@ require('bookdb.php');
 
 <div class="thumblist">
 <?php foreach ($books as $id => $book): ?>
-    <div hx-get="books/<?=$id?>">
-        <img src="images/<?=$book['image']?>">
-        <span><?=$book['title']?></span>
-    </div>
+    <a href="books/<?=$id?>">
+        <div>
+            <img src="images/<?=$book['image']?>">
+            <span><?=$book['title']?></span>
+        </div>
+    </a>
 <?php endforeach; ?>
 </div>
