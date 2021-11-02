@@ -1,6 +1,6 @@
 <html>
 <head>
-    <!--<script src="/htmx.min.js"></script>-->
+    <script src="/htmx.min.js"></script>
     <style>
     nav { background-color: #000; }
     nav a { margin: 5px; font-size: larger; color: #FFF; display: inline-block; }

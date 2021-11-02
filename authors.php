@@ -11,7 +11,7 @@ require('bookdb.php');
 <?php foreach ($authors as $id => $author): ?>
     <a href="authors/<?=$id?>">
         <div>
-            <img src="images/<?=$author['image']?>">
+            <img src="/images/<?=$author['image']?>">
             <span><?=$author['name']?></span>
         </div>
     </a>
