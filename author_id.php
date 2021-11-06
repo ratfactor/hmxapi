@@ -6,7 +6,7 @@ $author = $authors[$req_author];
 ?>
 
 <div class="item-image">
-    <img src="/images/<?=$author['image']?>">
+    <img src="/static/<?=$author['image']?>">
     <p>Click <a href="/images/<?=$author['image']?>/meta">here</a> for author cover image metadata.</p>
 </div>
 
@@ -18,11 +18,9 @@ $author = $authors[$req_author];
 
 <div class="thumblist">
 <?php foreach ($author['books'] as $id): $book = $books[$id]; ?>
-    <a href="books/<?=$id?>">
-        <div>
-            <img src="/images/<?=$book['image']?>">
-            <span><?=$book['title']?></span>
-        </div>
-    </a>
+    <div><a href="/books/<?=$id?>">
+        <img src="/static/<?=$book['image']?>">
+        <span><?=$book['title']?></span>
+    </a></div>
 <?php endforeach; ?>
 </div>
