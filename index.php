@@ -29,6 +29,7 @@ elseif (route('|^/welcome/htmx|',     'welcome_htmx.php')) ;
 elseif (route('|^/books$|',           'books.php')) ;
 elseif (route('|^/books/([0-9]+)|',   'book_id.php',    'req_book')) ;
 elseif (route('|^/authors$|',         'authors.php')) ;
+elseif (route('|^/authors/new$|',     'authors_new.php')) ;
 elseif (route('|^/authors/([0-9]+)|', 'author_id.php',  'req_author')) ;
 elseif (route('|^/images/(.*)/meta|', 'image_meta.php', 'req_imgfname')) ;
 else {

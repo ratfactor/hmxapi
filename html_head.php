@@ -1,16 +1,9 @@
 <html>
 <head>
     <!-- see html_tail.php for javascript, including htmx include -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
-    nav { background-color: #000; }
-    nav a { margin: 5px; font-size: larger; color: #FFF; display: inline-block; }
-    .thumblist { display: flex; flex-wrap: wrap; }
-    .thumblist div { margin: 10px; cursor: pointer; }
-    .thumblist img { height: 160px; display: block; }
-    .thumblist span { display: block; width: 120px; text-decoration: underline; }
-    .item-image { float: left; margin: 1em; width: 200px; }
-    form { padding: 1em; }
-    input  { display: block; margin-bottom: 1em; }
     </style>
 </head>
 <body>
