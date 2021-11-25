@@ -19,7 +19,6 @@
     <a href="/">Home</a>
     <a href="/books">Books</a>
     <a href="/authors">Authors</a>
-    <a href="/does-not-exist">Error!</a>
     <?php if ($htmx_request): ?>
         <span style="background:#BFB">htmx</span>
     <?php endif; ?>
