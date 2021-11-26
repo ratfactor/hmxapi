@@ -4,6 +4,8 @@ See it live here:
 
 http://hypermedia.ratfactor.com
 
+image::static/lynx.png[screenshot of site in lynx]
+
 PHP demonstration "book database" with an HTML
 https://en.wikipedia.org/wiki/Hypermedia[hypermedia] API using
 https://htmx.org/[htmx] to render HTML content inline as needed.
