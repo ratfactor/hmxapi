@@ -13,32 +13,51 @@ function input_name($value = null){
         $validation = validate_name($value);
     }
 ?>
-    <div class="input" hx-target="this" hx-swap="outerHTML" hx-params="name">
-        <label for="name">Name:</label>
-        <input
-            id="name"
-            name="name"
-            value="<?=$value?>"
-            class="<?=validation_class($validation)?>"
-            hx-get="/authors/new"
-            hx-trigger="input delay:500ms"
-        >
-        <?=validation_msg($validation)?>
-    </div>
+    <tr hx-target="this" hx-swap="outerHTML">
+        <td><label for="name">Name:</label></td>
+        <td><input
+                id="name"
+                name="name"
+                value="<?=$value?>"
+                class="<?=validation_class($validation)?>"
+                hx-get="/authors/new"
+                hx-trigger="input delay:500ms"
+            >
+            <?=validation_msg($validation)?>
+        </td>
+    </tr>
 <?php }
 
 function input_born($value = null){
+    $validation = null;
+
+    if(is_null($value)){
+        $value = ""; // Default
+    } else {
+        $validation = validate_born($value);
+    }
 ?>
-    <label for="born">Born (year):</label>
-    <input id="born" name="born">
-    <br>
+    <tr hx-target="this" hx-swap="outerHTML">
+        <td><label for="born">Born (year):</label></td>
+        <td><input
+                id="born"
+                name="born"
+                value="<?=$value?>"
+                class="<?=validation_class($validation)?>"
+                hx-get="/authors/new"
+                hx-trigger="input delay:500ms"
+            >
+            <?=validation_msg($validation)?>
+        </td>
+    </tr>
 <?php }
 
 function input_books($value = null){
 ?>
-    <label for="books">Books (comma-separated):</label>
-    <input id="books" name="books">
-    <br>
+    <tr hx-target="this" hx-swap="outerHTML">
+        <td><label for="books">Books (list):</label></td>
+        <td><input id="books" name="books"></td>
+    </tr>
 <?php }
 
 
@@ -49,13 +68,16 @@ if (isset($_GET["born"])){ input_born($_GET["born"]); exit; }
 if (isset($_GET["books"])){ input_books($_GET["books"]); exit; }
 
 function validate_name($value){
-    if (stripos($value, 'z') !== false){
+    if (preg_match('/z/i', $value)){
         return [ 'valid'=>false, 'msg'=>"Must not contain the letter 'Z'." ];
     }
     return [ 'valid'=>true, 'msg'=>"Name looks good!" ];
 }
 function validate_born($value){
-
+    if (!preg_match('/^\d{4}$/', $value)){
+        return [ 'valid'=>false, 'msg'=>"Sorry, four-digit years only." ];
+    }
+    return [ 'valid'=>true, 'msg'=>"Year looks good!" ];
 }
 function validate_books($value){
 
@@ -96,12 +118,17 @@ else:
 <h1>Add an Author</h1>
 <p>Please don't put too much effort into this info. It won't actually be saved!</p>
 <form method="post" action="/authors">
+<table> <!-- 3rd try, it seems HTML tables are still the simplest form layout -->
     <?php
     input_name();
     input_born();
     input_books();
     ?>
-    <input type="submit">
+    <tr>
+        <td></td>
+        <td><button>Submit Author</button></td>
+    </tr>
+</table>
 </form>
 
 <?php
