@@ -40,12 +40,35 @@ if ($method === 'POST'):
 endif;
 
 
-// Book list
-// ===========================================================================
-
 // Get book "database" with $authors and $books.
+// Needed by everything past this point
 require('bookdb.php');
 
+// Book autocomplete (used by New Author form -- uh, maybe in the future)
+// ===========================================================================
+if (isset($_GET['book-search'])){
+    $query = $_GET['book-search'];
+
+    ?>
+    <ul class="autocomplete">
+    <?php
+    foreach ($books as $id => $book):
+        if (stripos($book['title'], $query) !== false):
+            ?>
+            <li><?=$book['title']?></li>
+            <?php
+        endif;
+    endforeach;
+    ?>
+    </ul>
+    <?php
+    
+    exit;
+}
+
+
+// Book list
+// ===========================================================================
 if ($querystring !== 'partial'):
 ?>
     <h1>Books</h1>

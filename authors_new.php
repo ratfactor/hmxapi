@@ -53,15 +53,32 @@ function input_born($value = null){
 <?php }
 
 function input_books($value = null){
+    $validation = null;
+
+    if(is_null($value)){
+        $value = ""; // Default
+    } else {
+        $validation = validate_books($value);
+    }
 ?>
     <tr hx-target="this" hx-swap="outerHTML">
         <td><label for="books">Books (list):</label></td>
-        <td><input id="books" name="books"></td>
+        <td><input
+                id="books"
+                name="books"
+                value="<?=$value?>"
+                class="<?=validation_class($validation)?>"
+                style="width: 300px;"
+                hx-get="/authors/new"
+                hx-trigger="input delay:500ms"
+            >
+            <?=validation_msg($validation)?>
+        </td>
     </tr>
 <?php }
 
 
-// Validation functions and helpers
+// Validation functions
 // ===========================================================================
 if (isset($_GET["name"])){ input_name($_GET["name"]); exit; }
 if (isset($_GET["born"])){ input_born($_GET["born"]); exit; }
@@ -80,9 +97,37 @@ function validate_born($value){
     return [ 'valid'=>true, 'msg'=>"Year looks good!" ];
 }
 function validate_books($value){
+    $titles = preg_split('/\s*,\s*/', $value);
 
+    require_once('bookdb.php');
+
+    $ok_titles = 0;
+    $suggestions = [];
+    $unmatched = true; // if at least one unmatched
+
+    foreach ($titles as $try_title){
+        $try_title = strtoupper($try_title);
+        foreach ($books as $id => $book){
+            if (strtoupper($book['title']) == $try_title) {
+                $ok_titles++;
+            } else {
+                $unmatched = true;
+                if (stripos($book['title'], $try_title) !== false){
+                    array_push($suggestions, $book['title']);
+                }
+            }
+        }
+    }
+
+    if ($unmatched){
+        return [ 'valid'=>false, 'msg'=>"Matched $ok_titles book titles. Suggestions: ".implode(',',$suggestions)."." ];
+    } else {
+        return [ 'valid'=>true, 'msg'=>"Matched $ok_titles book titles." ];
+    }
 }
 
+// Validation feedback helpers
+// ===========================================================================
 function validation_class($validation){
     if ($validation){
         return $validation['valid'] ? "valid" : "invalid";

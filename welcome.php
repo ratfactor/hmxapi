@@ -15,3 +15,7 @@
 <noscript>Looks like JavaScript is not enabled. I am a <code>&lt;noscript&gt;</code> tag. Hello! :-)</noscript>
 
 <p>Here's an example of 404 error: <a href="/no-page-here">/no-page-here</a>.</p>
+
+<p>There's a draft <a href="http://ratfactor.com/the-web">article</a> about the
+pie-in-the-sky concepts in a very nascent stage. I'll probably also write something
+more specific about this demo.</p>
